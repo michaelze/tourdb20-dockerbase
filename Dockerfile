@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
          zip
 
 COPY install-composer /root
-RUN chmod +x /root/install-composer && /root/install-composer && rm /root/install-composer
+RUN /root/install-composer && rm /root/install-composer
 
 RUN a2enmod rewrite
 
