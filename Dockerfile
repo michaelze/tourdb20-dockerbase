@@ -1,20 +1,19 @@
-FROM php:7.1.2-apache
-MAINTAINER Michael Zender <michael@crazymonkeys.de>
+FROM docker.io/php:7.3.2-apache-stretch
+MAINTAINER Michael Iseli <michael@crazymonkeys.de>
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
         libicu-dev \
-        zlib1g-dev \
-        git \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install \
-         intl \
-         mbstring \
-         pdo_mysql \
-         zip
-
-COPY install-composer /root
-RUN /root/install-composer && rm /root/install-composer
+        libzip-dev && \
+    docker-php-ext-install \
+        intl \
+        mbstring \
+        pdo_mysql \
+        zip && \
+    apt-get remove -y \
+        libicu-dev \
+        libzip-dev && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite
-
-CMD ["apache2-foreground"]
