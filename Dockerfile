@@ -5,15 +5,11 @@ RUN apt-get update && \
     apt-get install -y \
         libicu-dev \
         libzip-dev && \
+    rm -rf /var/lib/apt/lists/* && \
     docker-php-ext-install \
         intl \
         mbstring \
         pdo_mysql \
-        zip && \
-    apt-get remove -y \
-        libicu-dev \
-        libzip-dev && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+        zip
 
 RUN a2enmod rewrite
