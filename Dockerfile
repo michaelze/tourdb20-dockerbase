@@ -17,5 +17,9 @@ RUN apt-get update && \
     pecl install imagick-3.4.3 && \
     docker-php-ext-enable imagick
 
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+COPY tourdb-custom-settings.ini $PHP_INI_DIR/conf.d/
+
 RUN a2enmod rewrite
 
