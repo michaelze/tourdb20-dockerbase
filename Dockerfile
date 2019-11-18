@@ -13,6 +13,7 @@ RUN apt-get update && \
         intl \
         mbstring \
         pdo_mysql \
+        bcmath \
         zip && \
     pecl install imagick-3.4.3 && \
     docker-php-ext-enable imagick
