@@ -1,4 +1,4 @@
-FROM docker.io/php:7.2.15-apache-stretch
+FROM docker.io/php:7.2.34-apache-buster
 MAINTAINER Michael Iseli <michael@crazymonkeys.de>
 
 RUN apt-get update && \
