@@ -1,4 +1,4 @@
-FROM docker.io/php:7.2.34-apache-buster
+FROM docker.io/php:7.4-apache-buster
 MAINTAINER Michael Iseli <michael@crazymonkeys.de>
 
 RUN apt-get update && \
@@ -11,7 +11,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     docker-php-ext-install \
         intl \
-        mbstring \
         pdo_mysql \
         bcmath \
         zip && \
@@ -23,4 +22,3 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY tourdb-custom-settings.ini $PHP_INI_DIR/conf.d/
 
 RUN a2enmod rewrite
-
